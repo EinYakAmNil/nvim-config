@@ -34,7 +34,8 @@ local general_keymaps = {
 
 local lua_buf_opts = {}
 local lua_keymaps = copy_values(general_keymaps)
-lua_keymaps[#lua_keymaps + 1] = { "n", "<F5>", ":w<CR>:!lua %<CR>", keymap_opt }
+lua_keymaps[#lua_keymaps + 1] = { "n", "<F5>", "<cmd>w<cr><cmd>!lua %<cr>", keymap_opt }
+lua_keymaps[#lua_keymaps + 1] = { "n", "<leader>t", "<cmd>write<CR><cmd>PlenaryBustedFile %<CR>", keymap_opt }
 local lua_settings = {
 	keymaps = lua_keymaps,
 	buf_opts = lua_buf_opts,
@@ -55,7 +56,9 @@ lspconfig.lua_ls.setup({
 
 local go_buf_opts = {}
 local go_keymaps = copy_values(general_keymaps)
-go_keymaps[#go_keymaps + 1] = { "n", "<F5>", ":w<CR>:!go run .<CR>", keymap_opt }
+go_keymaps[#go_keymaps + 1] = { "n", "<F5>", "<cmd>w<cr><cmd>!go run .<cr>", keymap_opt }
+go_keymaps[#go_keymaps + 1] = { "n", "<leader>b", "<cmd>w<cr><cmd>!go build -C " .. vim.fn.expand("%:h") .. "<cr>",
+	keymap_opt }
 local go_settings = {
 	keymaps = go_keymaps,
 	buf_opts = go_buf_opts,

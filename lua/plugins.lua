@@ -28,7 +28,7 @@ require("lazy").setup({
 	{ "nvim-treesitter/nvim-treesitter" },
 	{ "nvim-treesitter/nvim-treesitter-context" },
 	{ "nvim-treesitter/playground" },
-	-- { dir = "~/Code/nvimboat" },
+	{ dir = "~/Projekte/nvimboat" },
 
 	{
 		"nvim-neo-tree/neo-tree.nvim",
