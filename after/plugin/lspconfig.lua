@@ -57,7 +57,15 @@ lspconfig.lua_ls.setup({
 local go_buf_opts = {}
 local go_keymaps = copy_values(general_keymaps)
 go_keymaps[#go_keymaps + 1] = { "n", "<F5>", "<cmd>w<cr><cmd>!go run .<cr>", keymap_opt }
-go_keymaps[#go_keymaps + 1] = { "n", "<leader>b", "<cmd>w<cr><cmd>!go build -C " .. vim.fn.expand("%:h") .. "<cr>",
+go_keymaps[#go_keymaps + 1] = { "n", "<leader>b", function()
+	vim.cmd.write()
+	vim.fn.jobstart("go build -C " .. vim.fn.expand("%:h"), {
+		stderr_buffered = true,
+		on_stderr = function(_, data)
+			print(vim.inspect(data))
+		end
+	})
+end,
 	keymap_opt }
 local go_settings = {
 	keymaps = go_keymaps,
