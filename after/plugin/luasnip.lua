@@ -1,4 +1,9 @@
 local ls = require("luasnip")
+require("luasnip.loaders.from_lua").lazy_load()
+
+ls.config.set_config {
+	updateevents = "TextChanged,TextChangedI"
+}
 
 vim.keymap.set({ "i", "s" }, "<c-j>", function()
 	if ls.expand_or_jumpable() then

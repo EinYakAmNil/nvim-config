@@ -62,7 +62,9 @@ go_keymaps[#go_keymaps + 1] = { "n", "<leader>b", function()
 	vim.fn.jobstart("go build -C " .. vim.fn.expand("%:h"), {
 		stderr_buffered = true,
 		on_stderr = function(_, data)
-			print(vim.inspect(data))
+			if data ~= "" then
+				print(vim.inspect(data))
+			end
 		end
 	})
 end,
