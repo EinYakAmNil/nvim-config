@@ -33,5 +33,12 @@ vim.keymap.set("v", "K", ":m '<-2<cr>gv=gv")
 
 vim.keymap.set("v", "<leader>+", '"+y', { noremap = true })
 vim.keymap.set("", "<leader><cr>", "/\\c", { noremap = true }) --ignore case search
-vim.keymap.set("", "<leader>p", "\"_dP", { noremap = true }) --better pasting
+vim.keymap.set("", "<leader>p", "\"_dP", { noremap = true })   --better pasting
 vim.keymap.set("n", "<leader>s", [[:%s/\<<c-r><c-w>\>/<c-r><c-w>/gI<left><left><left>]])
+
+-- enclose selected in quotes, brackets, etc.
+vim.keymap.set("v", [[<leader>"]], [[s"<C-r>""<esc>]], { noremap = true })
+vim.keymap.set("v", "<leader>'", [[s'<C-r>"'<esc>]], { noremap = true })
+vim.keymap.set("v", "<leader>[", [[s[<C-r>"]<esc>]], { noremap = true })
+vim.keymap.set("v", "<leader>{", [[s{<C-r>"}<esc>]], { noremap = true })
+vim.keymap.set("v", "<leader><", [[s<<C-r>"><esc>]], { noremap = true })
