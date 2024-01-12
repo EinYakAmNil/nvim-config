@@ -54,7 +54,38 @@ lspconfig.lua_ls.setup({
 	},
 })
 
-local go_buf_opts = {}
+function _G.go_foldexpr(lnum)
+	local fold_ranges = {}
+	local node = vim.treesitter.get_node({ pos = { 0, 1 } })
+	local i = 1
+	while node do
+		local start_row, _, end_row = node:range()
+		local node_t = node:type()
+
+		if node_t == "method_declaration" or node_t == "function_declaration" then
+			start_row, _, end_row = node:range()
+			fold_ranges[i] = { start_row + 1, end_row + 1 }
+			i = i + 1
+		end
+
+		node = node:next_sibling()
+	end
+
+	for _, range in ipairs(fold_ranges) do
+		if lnum > range[1] and lnum < range[2] then
+			return 1
+		end
+	end
+
+	return 0
+end
+
+local go_buf_opts = {
+	foldmethod = "expr",
+	foldexpr = "v:lua._G.go_foldexpr(v:lnum)",
+	foldlevel = 0,
+	foldenable = true,
+}
 local go_keymaps = copy_values(general_keymaps)
 go_keymaps[#go_keymaps + 1] = { "n", "<F5>", "<cmd>w<cr><cmd>!go run .<cr>", keymap_opt }
 go_keymaps[#go_keymaps + 1] = { "n", "<leader>b", function()
@@ -80,16 +111,15 @@ lspconfig.gopls.setup({
 	end
 })
 
-
 function _G.python_foldexpr(lnum)
 	local fold_ranges = {}
 	local node = vim.treesitter.get_node({ pos = { 0, 1 } })
 	local i = 1
 	while node do
 		local start_row, _, end_row = node:range()
-		local type = node:type()
+		local node_t = node:type()
 
-		if type == "class_definition" then
+		if node_t == "class_definition" then
 			for child in node:iter_children() do
 				if child:type() == "block" then
 					for cc in child:iter_children() do
