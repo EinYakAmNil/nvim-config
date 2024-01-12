@@ -22,3 +22,15 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 require("plugins")
+
+vim.g.firenvim_config = {
+	localSettings = {
+		[".*"] = {
+			cmdline = "neovim",
+			content = "text",
+			priority = 0,
+			selector = "textarea",
+			takeover = "never",
+		},
+	},
+}

@@ -11,13 +11,13 @@ require("nvim-treesitter.configs").setup({
 		"css",
 		"javascript",
 		"vim",
+		"markdown_inline",
 		"query",
 	},
 	sync_install = false,
 	auto_install = true,
 	highlight = {
 		enable = true,
-		disable = { "markdown" },
 		additional_vim_regex_highlighting = false,
 	},
 	indent = {

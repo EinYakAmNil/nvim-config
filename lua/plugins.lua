@@ -1,6 +1,33 @@
 require("lazy").setup({
-	{ "nvim-lualine/lualine.nvim" },
-	{ "nvim-tree/nvim-web-devicons" },
+	{
+		"nvim-lualine/lualine.nvim",
+		cond = function()
+			if vim.g.started_by_firenvim then
+				vim.opt.laststatus = 0
+				return false
+			else
+				vim.o.laststatus = 3
+				return true
+			end
+		end,
+		dependencies = "nvim-tree/nvim-web-devicons"
+	},
+	{
+		"nvim-tree/nvim-web-devicons",
+		config = function()
+			require("nvim-web-devicons").setup({
+				override = {
+					nvimboat = {
+						icon = "",
+						color = "#666eee",
+						cterm_color = "69",
+						name = "Nvimboat"
+					}
+				}
+			})
+		end,
+		lazy = false
+	},
 	{ "NvChad/nvim-colorizer.lua" },
 
 	{ "nvim-lua/plenary.nvim" },
