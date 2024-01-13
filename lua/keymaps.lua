@@ -39,6 +39,7 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<c-r><c-w>\>/<c-r><c-w>/gI<left><left><
 -- enclose selected in quotes, brackets, etc.
 vim.keymap.set("v", [[<leader>"]], [[s"<C-r>""<esc>]], { noremap = true })
 vim.keymap.set("v", "<leader>'", [[s'<C-r>"'<esc>]], { noremap = true })
+vim.keymap.set("v", "<leader>(", [[s(<C-r>")<esc>]], { noremap = true })
 vim.keymap.set("v", "<leader>[", [[s[<C-r>"]<esc>]], { noremap = true })
 vim.keymap.set("v", "<leader>{", [[s{<C-r>"}<esc>]], { noremap = true })
 vim.keymap.set("v", "<leader><", [[s<<C-r>"><esc>]], { noremap = true })

@@ -10,7 +10,6 @@ require("lazy").setup({
 				return true
 			end
 		end,
-		dependencies = "nvim-tree/nvim-web-devicons"
 	},
 	{
 		"nvim-tree/nvim-web-devicons",
@@ -29,10 +28,8 @@ require("lazy").setup({
 		lazy = false
 	},
 	{ "NvChad/nvim-colorizer.lua" },
-
 	{ "nvim-lua/plenary.nvim" },
 	{ "nvim-telescope/telescope.nvim" },
-
 	{ "neovim/nvim-lspconfig" },
 	{ "hrsh7th/cmp-buffer" },
 	{ "hrsh7th/cmp-nvim-lsp" },
@@ -41,7 +38,6 @@ require("lazy").setup({
 	{ "hrsh7th/nvim-cmp" },
 	{ "L3MON4D3/LuaSnip" },
 	{ "saadparwaiz1/cmp_luasnip" },
-
 	{ "numToStr/Comment.nvim" },
 
 	-- Automatic brackets.
@@ -55,7 +51,6 @@ require("lazy").setup({
 	{ "nvim-treesitter/nvim-treesitter" },
 	{ "nvim-treesitter/nvim-treesitter-context" },
 	{ "nvim-treesitter/playground" },
-	{ dir = "~/Projekte/nvimboat" },
 
 	{
 		"nvim-neo-tree/neo-tree.nvim",
@@ -69,5 +64,7 @@ require("lazy").setup({
 		build = function()
 			vim.fn["firenvim#install"](0)
 		end,
-	}
+	},
+
+	{ dir = "~/Projekte/nvimboat" },
 })
