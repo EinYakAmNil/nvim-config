@@ -23,6 +23,14 @@ require("nvim-treesitter.configs").setup({
 	indent = {
 		enable = true,
 	},
+	incremental_selection = {
+		enable = true,
+		keymaps = {
+			init_selection = "gnn",
+			node_incremental = "gnn",
+			node_decremental = "gNn",
+		}
+	}
 })
 
 vim.keymap.set("n", "<F2>", vim.cmd.TSCaptureUnderCursor, { noremap = true })
