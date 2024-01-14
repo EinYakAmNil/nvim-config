@@ -10,7 +10,20 @@ ls.add_snippets("go", {
 		if err != nil {{
 			{}
 		}}
-		]], {
-			i(1)
-		}))
+		]], {i(1)}
+	)),
+	s("catch err", fmt(
+		[[
+		var possibleErr interface{{}}
+		var err error
+		defer func(possibleErr interface{{}}) {{
+			possibleErr = recover()
+			if possibleErr != nil {{
+				err = errors.New(fmt.Sprint(possibleErr))
+			}}
+		}}(possibleErr)
+		{}
+		return err
+		]], {i(1)}
+	)),
 })
