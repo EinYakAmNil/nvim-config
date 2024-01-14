@@ -14,6 +14,10 @@ cmp.setup({
 			behavior = cmp.ConfirmBehavior.Insert,
 			select = true
 		},
+		['<C-j>'] = cmp.mapping.confirm {
+			behavior = cmp.ConfirmBehavior.Insert,
+			select = true
+		},
 	}),
 	sources = cmp.config.sources({
 		{ name = 'nvim_lua', keyword_length = 3, priority = 60,     max_item_count = 5 },
