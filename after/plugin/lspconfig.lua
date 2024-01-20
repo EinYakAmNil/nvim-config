@@ -25,11 +25,14 @@ end
 local keymap_opt = { noremap = true, silent = true, buffer = 0 }
 local general_keymaps = {
 	{ "n", "<leader>=", vim.lsp.buf.format,          keymap_opt },
+	{ "n", "<leader>e", vim.diagnostic.goto_next,    keymap_opt },
+	{ "n", "<leader>E", vim.diagnostic.goto_prev,    keymap_opt },
 	{ "n", "<leader>K", vim.lsp.buf.hover,           keymap_opt },
 	{ "n", "<leader>r", vim.lsp.buf.rename,          keymap_opt },
 	{ "n", "gd",        vim.lsp.buf.definition,      keymap_opt },
-	{ "n", "gt",        vim.lsp.buf.type_definition, keymap_opt },
 	{ "n", "gi",        vim.lsp.buf.implementation,  keymap_opt },
+	{ "n", "gr",        vim.lsp.buf.references,      keymap_opt },
+	{ "n", "gt",        vim.lsp.buf.type_definition, keymap_opt },
 }
 
 local lua_buf_opts = {}
