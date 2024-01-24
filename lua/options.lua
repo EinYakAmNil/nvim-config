@@ -13,7 +13,7 @@ vim.g.mapleader = "ü"
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 vim.opt.signcolumn = "yes"
 vim.opt.termguicolors = true
-vim.opt.conceallevel = 0
+vim.opt.conceallevel = 2
 vim.opt.concealcursor = "nc"
 
 --Better indenting, indentexpr outsourced to lua/utils.lua
