@@ -38,7 +38,7 @@ local general_keymaps = {
 local lua_buf_opts = {}
 local lua_keymaps = copy_values(general_keymaps)
 lua_keymaps[#lua_keymaps + 1] = { "n", "<F5>", "<cmd>w<cr><cmd>!lua %<cr>", keymap_opt }
-lua_keymaps[#lua_keymaps + 1] = { "n", "<leader>t", "<cmd>write<CR><cmd>PlenaryBustedFile %<CR>", keymap_opt }
+lua_keymaps[#lua_keymaps + 1] = { "n", "<leader>t", "<cmd>write<cr><cmd>PlenaryBustedFile %<cr>", keymap_opt }
 local lua_settings = {
 	keymaps = lua_keymaps,
 	buf_opts = lua_buf_opts,
@@ -91,6 +91,7 @@ local go_buf_opts = {
 }
 local go_keymaps = copy_values(general_keymaps)
 go_keymaps[#go_keymaps + 1] = { "n", "<F5>", "<cmd>w<cr><cmd>!go run .<cr>", keymap_opt }
+go_keymaps[#go_keymaps + 1] = { "n", "<leader>t", "<cmd>write<cr><cmd>!go test<cr>", keymap_opt }
 go_keymaps[#go_keymaps + 1] = { "n", "<leader>b", function()
 	vim.cmd.write()
 	vim.fn.jobstart("go build -C " .. vim.fn.expand("%:h"), {
@@ -157,7 +158,7 @@ local python_buf_opts = {
 	foldenable = true,
 }
 local python_keymaps = copy_values(general_keymaps)
-python_keymaps[#python_keymaps + 1] = { "n", "<F5>", ":w<CR>:!python %<CR>", keymap_opt }
+python_keymaps[#python_keymaps + 1] = { "n", "<F5>", ":w<cr>:!python %<cr>", keymap_opt }
 local python_settings = {
 	keymaps = python_keymaps,
 	buf_opts = python_buf_opts,

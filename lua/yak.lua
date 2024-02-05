@@ -101,6 +101,7 @@ local hl_theme = {
 	{ "@markup.link.url",         { fg = truec.pale_green, italic = true } },
 	{ "@markup.italic",           { italic = true } },
 	{ "@markup.strong",           { bold = true } },
+	{ "@markup.strikethrough",    { strikethrough = true } },
 	-- LSP
 	{ "DiagnosticError",          { fg = truec.red, undercurl = true } },
 	{ "DiagnosticHint",           { fg = truec.lightgrey } },
