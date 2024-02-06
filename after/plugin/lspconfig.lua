@@ -164,9 +164,21 @@ local python_settings = {
 	buf_opts = python_buf_opts,
 }
 
-require("lspconfig").pylsp.setup({
+lspconfig.pylsp.setup({
 	capabilities = capabilities,
 	on_attach = function()
 		on_attach(python_settings)
 	end,
+})
+
+local c_settings = {
+	keymaps = copy_values(general_keymaps),
+	buf_opts = {}
+}
+
+lspconfig.ccls.setup({
+	capabilities = capabilities,
+	on_attach = function ()
+		on_attach(c_settings)
+	end
 })
