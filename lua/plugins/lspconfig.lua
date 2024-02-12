@@ -1,8 +1,5 @@
 vim.opt.signcolumn = "yes"
 
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
-local lspconfig = require("lspconfig")
-
 local function copy_values(array)
 	cpy = {}
 	for i, val in ipairs(array) do
@@ -43,19 +40,6 @@ local lua_settings = {
 	keymaps = lua_keymaps,
 	buf_opts = lua_buf_opts,
 }
-lspconfig.lua_ls.setup({
-	capabilities = capabilities,
-	on_attach = function()
-		on_attach(lua_settings)
-	end,
-	settings = {
-		Lua = {
-			diagnostics = {
-				disable = { "lowercase-global" },
-			},
-		},
-	},
-})
 
 function _G.go_foldexpr(lnum)
 	local fold_ranges = {}
@@ -91,7 +75,7 @@ local go_buf_opts = {
 }
 local go_keymaps = copy_values(general_keymaps)
 go_keymaps[#go_keymaps + 1] = { "n", "<F5>", "<cmd>w<cr><cmd>!go run .<cr>", keymap_opt }
-go_keymaps[#go_keymaps + 1] = { "n", "<leader>t", "<cmd>write<cr><cmd>!go test<cr>", keymap_opt }
+go_keymaps[#go_keymaps + 1] = { "n", "<leader>t", "<cmd>write<cr><cmd>!go test -short<cr>", keymap_opt }
 go_keymaps[#go_keymaps + 1] = { "n", "<leader>b", function()
 	vim.cmd.write()
 	vim.fn.jobstart("go build -C " .. vim.fn.expand("%:h"), {
@@ -108,12 +92,6 @@ local go_settings = {
 	keymaps = go_keymaps,
 	buf_opts = go_buf_opts,
 }
-lspconfig.gopls.setup({
-	capabilities = capabilities,
-	on_attach = function()
-		on_attach(go_settings)
-	end
-})
 
 function _G.python_foldexpr(lnum)
 	local fold_ranges = {}
@@ -164,21 +142,46 @@ local python_settings = {
 	buf_opts = python_buf_opts,
 }
 
-lspconfig.pylsp.setup({
-	capabilities = capabilities,
-	on_attach = function()
-		on_attach(python_settings)
-	end,
-})
-
 local c_settings = {
 	keymaps = copy_values(general_keymaps),
 	buf_opts = {}
 }
 
-lspconfig.ccls.setup({
-	capabilities = capabilities,
-	on_attach = function ()
-		on_attach(c_settings)
+return {
+	"neovim/nvim-lspconfig",
+	config = function()
+		local capabilities = require("cmp_nvim_lsp").default_capabilities()
+		local lspconfig = require("lspconfig")
+		lspconfig.ccls.setup({
+			capabilities = capabilities,
+			on_attach = function()
+				on_attach(c_settings)
+			end
+		})
+		lspconfig.pylsp.setup({
+			capabilities = capabilities,
+			on_attach = function()
+				on_attach(python_settings)
+			end,
+		})
+		lspconfig.gopls.setup({
+			capabilities = capabilities,
+			on_attach = function()
+				on_attach(go_settings)
+			end
+		})
+		lspconfig.lua_ls.setup({
+			capabilities = capabilities,
+			on_attach = function()
+				on_attach(lua_settings)
+			end,
+			settings = {
+				Lua = {
+					diagnostics = {
+						disable = { "lowercase-global" },
+					},
+				},
+			},
+		})
 	end
-})
+}

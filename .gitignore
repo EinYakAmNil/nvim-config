@@ -1,2 +1,2 @@
-after/plugin/nvimboat.lua
+lua/plugins/nvimboat.lua
 lazy-lock.json
