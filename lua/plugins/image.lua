@@ -6,7 +6,7 @@ return {
 	"3rd/image.nvim",
 	keys = {
 		{
-			"<C-L>",
+			"<C-i>",
 			function()
 				local image = require("image")
 				image.clear()
