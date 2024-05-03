@@ -10,7 +10,7 @@ ls.add_snippets("go", {
 		if err != nil {{
 			{}
 		}}
-		]], {i(1)}
+		]], { i(1) }
 	)),
 	s("catch err", fmt(
 		[[
@@ -24,6 +24,6 @@ ls.add_snippets("go", {
 		}}(possibleErr)
 		{}
 		return err
-		]], {i(1)}
+		]], { i(1) }
 	)),
 })
