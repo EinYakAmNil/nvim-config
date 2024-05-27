@@ -147,6 +147,14 @@ local c_settings = {
 	buf_opts = {}
 }
 
+local latex_buf_opts = {}
+local latex_keymaps = copy_values(general_keymaps)
+latex_keymaps[#latex_keymaps+1] = { "n", "<F5>", "<cmd>w<cr><cmd>!pdflatex %<cr>", keymap_opt }
+local latex_settings = {
+	keymaps = latex_keymaps,
+	buf_opts = latex_buf_opts,
+}
+
 return {
 	"neovim/nvim-lspconfig",
 	config = function()
@@ -182,6 +190,12 @@ return {
 					},
 				},
 			},
+		})
+		lspconfig.texlab.setup({
+			capabilities = capabilities,
+			on_attach = function()
+				on_attach(latex_settings)
+			end
 		})
 	end
 }

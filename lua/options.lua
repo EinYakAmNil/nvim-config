@@ -15,6 +15,7 @@ vim.opt.signcolumn = "yes"
 vim.opt.termguicolors = true
 vim.opt.conceallevel = 2
 vim.opt.concealcursor = "nc"
+vim.opt.wildmode="longest:full"
 
 --Better indenting, indentexpr outsourced to lua/utils.lua
 vim.cmd([[filetype indent off]])

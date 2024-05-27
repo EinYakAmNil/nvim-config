@@ -34,7 +34,7 @@ return {
 				}
 			})
 
-			vim.bo.omnifunc = cmp.complete()
+			vim.lsp.omnifunc = cmp.complete()
 		end
 	},
 	{ "hrsh7th/cmp-buffer" },
