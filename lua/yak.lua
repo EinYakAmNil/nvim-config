@@ -111,6 +111,8 @@ local hl_theme = {
 	{ "DiagnosticSignHint",       { fg = truec.lightgrey, bg = truec.deeperpink } },
 	{ "DiagnosticSignInfo",       { fg = truec.blue, bg = truec.deeperpink } },
 	{ "DiagnosticSignWarn",       { fg = truec.orange, bg = truec.deeperpink } },
+	-- Stuff
+	{ "@text.reference",          { link = "Identifier" } }
 }
 
 for _, hl in ipairs(hl_theme) do
