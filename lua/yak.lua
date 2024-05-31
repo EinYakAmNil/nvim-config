@@ -41,6 +41,7 @@ local truec = {
 local hl_theme = {
 	-- Default colors
 	{ "Normal",                   { fg = truec.lightblue } },
+	{ "NormalFloat",              { bg = truec.deeperpink } },
 	{ "Conceal",                  { link = "Normal" } },
 	{ "Visual",                   { bg = truec.darkred, bold = true } },
 	{ "Search",                   { bg = truec.darkblue, bold = true, reverse = true } },
