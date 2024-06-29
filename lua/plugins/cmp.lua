@@ -1,7 +1,9 @@
 return {
+	{ "onsails/lspkind.nvim" },
 	{
 		"hrsh7th/nvim-cmp",
 		config = function()
+			local lspkind = require 'lspkind'
 			local cmp = require 'cmp'
 			cmp.setup({
 				snippet = {
@@ -31,6 +33,14 @@ return {
 				experimental = {
 					native_menu = false,
 					ghost_text = true
+				},
+				formatting = {
+					format = lspkind.cmp_format({
+						mode = 'symbol',
+						maxwidth = 50,
+						ellipsis_char = '...',
+						show_labelDetails = true,
+					})
 				}
 			})
 
