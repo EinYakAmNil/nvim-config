@@ -155,6 +155,13 @@ local latex_settings = {
 	buf_opts = latex_buf_opts,
 }
 
+local js_buf_opts = {}
+local js_keymaps = copy_values(general_keymaps)
+local js_settings = {
+	keymaps = js_keymaps,
+	buf_opts = js_buf_opts,
+}
+
 return {
 	"neovim/nvim-lspconfig",
 	config = function()
@@ -195,6 +202,12 @@ return {
 			capabilities = capabilities,
 			on_attach = function()
 				on_attach(latex_settings)
+			end
+		})
+		lspconfig.tsserver.setup({
+			capabilities = capabilities,
+			on_attach = function()
+				on_attach(js_settings)
 			end
 		})
 	end
