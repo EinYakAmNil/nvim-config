@@ -22,6 +22,7 @@ local c = {
 }
 
 local truec = {
+	lightpurple = "#cf00cf",
 	purple = "#220022",
 	lightgrey = "#d3d3d3",
 	grey = "#333333",
@@ -49,7 +50,7 @@ local hl_theme = {
 	{ "Pmenu",                    { fg = truec.lightgrey, bg = truec.deeperpink, italic = true } },
 	{ "PmenuSel",                 { fg = truec.lightblue, bg = truec.darkred, bold = true } },
 	{ "WildMenu",                 { link = "Pmenu" } },
-	{ "Folded",                   { fg = truec.yellow, bg = truec.darkred, italic = true } },
+	{ "Folded",                   { fg = truec.pale_green, italic = true } },
 	{ "NonText",                  { fg = truec.darkred } },
 	-- UI colors
 	{ "LineNr",                   { fg = truec.blue, bg = truec.deeperpink } },
@@ -67,7 +68,10 @@ local hl_theme = {
 	{ "Statement",                { fg = truec.orange } },
 	{ "Title",                    { fg = truec.blue, bold = true } },
 	{ "Constant",                 { fg = truec.yellow } },
-	{ "String",                   { fg = truec.blue } },
+	{ "Operator",                 { fg = truec.yellow } },
+	{ "Special",                  { fg = truec.green } },
+	{ "Delimiter",                { fg = truec.orange } },
+	{ "String",                   { fg = truec.lightpurple } },
 	{ "Number",                   { link = "String" } },
 	{ "Type",                     { fg = truec.pale_green, bold = true } },
 	{ "Identifier",               { fg = truec.blue, bold = true } },
@@ -82,6 +86,7 @@ local hl_theme = {
 	{ "@field",                   { fg = truec.lightgrey } },
 	{ "@property",                { link = "@field" } },
 	{ "@method",                  { fg = truec.blue, bold = true } },
+	{ "@punctuation.bracket",     { link = "@punctuation" } },
 	{ "@string.documentation",    { fg = truec.green } },
 	{ "@lsp.type.function",       { link = "@function" } },
 	{ "@lsp.type.method",         { link = "@method" } },
