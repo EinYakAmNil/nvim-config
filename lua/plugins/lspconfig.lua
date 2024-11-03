@@ -36,6 +36,7 @@ local lua_buf_opts = {}
 local lua_keymaps = copy_values(general_keymaps)
 lua_keymaps[#lua_keymaps + 1] = { "n", "<F5>", "<cmd>w<cr><cmd>!lua %<cr>", keymap_opt }
 lua_keymaps[#lua_keymaps + 1] = { "n", "<leader>t", "<cmd>write<cr><cmd>PlenaryBustedFile %<cr>", keymap_opt }
+lua_keymaps[#lua_keymaps + 1] = { "n", "<leader>T", "<cmd>write<cr><cmd>PlenaryBustedDirectory tests/<cr>", keymap_opt }
 local lua_settings = {
 	keymaps = lua_keymaps,
 	buf_opts = lua_buf_opts,
@@ -204,7 +205,7 @@ return {
 				on_attach(latex_settings)
 			end
 		})
-		lspconfig.tsserver.setup({
+		lspconfig.ts_ls.setup({
 			capabilities = capabilities,
 			on_attach = function()
 				on_attach(js_settings)

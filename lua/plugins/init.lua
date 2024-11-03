@@ -15,7 +15,10 @@ return {
 		end,
 		lazy = false
 	},
-	{ "nvim-lua/plenary.nvim" },
+	{
+		"nvim-lua/plenary.nvim",
+		lazy = false,
+	},
 
 	--Neovim in the browser
 	{
