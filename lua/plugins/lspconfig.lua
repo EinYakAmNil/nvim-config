@@ -76,7 +76,19 @@ local go_buf_opts = {
 }
 local go_keymaps = copy_values(general_keymaps)
 go_keymaps[#go_keymaps + 1] = { "n", "<F5>", "<cmd>w<cr><cmd>!go run .<cr>", keymap_opt }
-go_keymaps[#go_keymaps + 1] = { "n", "<leader>t", "<cmd>write<cr><cmd>!go test -short<cr>", keymap_opt }
+go_keymaps[#go_keymaps + 1] = { "n", "<leader>t", function()
+	vim.cmd("write")
+	local go_dir = vim.fn.expand("%:h")
+	local obj = vim.system(
+		{ "go", "test" },
+		{ cwd = go_dir, text = true }
+	):wait()
+	if obj.stderr ~= "" then
+		vim.notify(obj.stderr)
+	end
+	vim.notify(obj.stdout)
+end,
+	keymap_opt }
 go_keymaps[#go_keymaps + 1] = { "n", "<leader>b", function()
 	vim.cmd.write()
 	vim.fn.jobstart("go build -C " .. vim.fn.expand("%:h"), {
@@ -150,7 +162,7 @@ local c_settings = {
 
 local latex_buf_opts = {}
 local latex_keymaps = copy_values(general_keymaps)
-latex_keymaps[#latex_keymaps+1] = { "n", "<F5>", "<cmd>w<cr><cmd>!pdflatex %<cr>", keymap_opt }
+latex_keymaps[#latex_keymaps + 1] = { "n", "<F5>", "<cmd>w<cr><cmd>!pdflatex %<cr>", keymap_opt }
 local latex_settings = {
 	keymaps = latex_keymaps,
 	buf_opts = latex_buf_opts,
