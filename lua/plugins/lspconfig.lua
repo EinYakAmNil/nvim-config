@@ -73,6 +73,7 @@ local go_buf_opts = {
 	foldexpr = "v:lua._G.go_foldexpr(v:lnum)",
 	foldlevel = 0,
 	foldenable = true,
+	formatoptions = "cqjor",
 }
 local go_keymaps = copy_values(general_keymaps)
 go_keymaps[#go_keymaps + 1] = { "n", "<F5>", "<cmd>w<cr><cmd>!go run .<cr>", keymap_opt }
@@ -94,9 +95,15 @@ go_keymaps[#go_keymaps + 1] = { "n", "<leader>b", function()
 	vim.fn.jobstart("go build -C " .. vim.fn.expand("%:h"), {
 		stderr_buffered = true,
 		on_stderr = function(_, data)
-			if data ~= "" then
-				print(vim.inspect(data))
+			if #data == 1 then
+				print("Build successful.")
+				return
 			end
+			msg = ""
+			for _, line in ipairs(data) do
+				msg = msg .. line
+			end
+			print(msg)
 		end
 	})
 end,
