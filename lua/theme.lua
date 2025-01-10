@@ -107,15 +107,19 @@ local hl_theme = {
 	{ "@markup.strikethrough",    { strikethrough = true } },
 	-- LSP
 	{ "DiagnosticError",          { fg = truec.red, undercurl = true } },
+	{ "DiagnosticUnderlineError", { undercurl = true, sp = truec.red } },
 	{ "DiagnosticHint",           { fg = truec.lightgrey } },
-	{ "DiagnosticInfo",           { fg = truec.blue } },
-	{ "DiagnosticWarn",           { fg = truec.orange } },
+	{ "DiagnosticUnderlineHint",  { underdotted = true, sp = truec.lightgrey } },
+	{ "DiagnosticInfo",           { fg = truec.lightblue } },
+	{ "DiagnosticUnderlineInfo",  { underline = true, sp = truec.lightblue } },
+	{ "DiagnosticWarn",           { fg = truec.orange, underdotted = true } },
+	{ "DiagnosticUnderlineWarn",  { underdotted = true, sp = truec.yellow } },
 	{ "DiagnosticSignError",      { fg = truec.red, bg = truec.deeperpink } },
 	{ "DiagnosticSignHint",       { fg = truec.lightgrey, bg = truec.deeperpink } },
 	{ "DiagnosticSignInfo",       { fg = truec.blue, bg = truec.deeperpink } },
 	{ "DiagnosticSignWarn",       { fg = truec.orange, bg = truec.deeperpink } },
-	-- Stuff
-	{ "@text.reference",          { link = "Identifier" } }
+	-- Nvimboat
+	{ "@text.reference",          { fg = truec.blue, bold = true } }
 }
 
 for _, hl in ipairs(hl_theme) do

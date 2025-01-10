@@ -1,12 +1,13 @@
+vim.opt.encoding = "utf-8"
+vim.opt.compatible = false
 vim.opt.number = true
 vim.opt.relativenumber = true
-vim.opt.compatible = false
 vim.opt.incsearch = true
-vim.opt.encoding = "utf-8"
 vim.opt.hlsearch = false
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 vim.opt.scrolloff = 8
 vim.opt.omnifunc = "v:vim.lsp.omnifunc"
-vim.opt.termguicolors = false
 vim.opt.undofile = true
 vim.opt.cursorline = true
 vim.g.mapleader = "ü"
