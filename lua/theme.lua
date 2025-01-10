@@ -74,7 +74,7 @@ local hl_theme = {
 	{ "String",                   { fg = truec.lightpurple } },
 	{ "Number",                   { link = "String" } },
 	{ "Type",                     { fg = truec.pale_green, bold = true } },
-	{ "Identifier",               { fg = truec.blue, bold = true } },
+	{ "Identifier",               { fg = truec.blue, bold = true, underdouble = true } },
 	-- Treesitter
 	{ "@keyword",                 { fg = truec.yellow, italic = true } },
 	{ "@keyword.return",          { fg = truec.yellow } },
@@ -96,11 +96,8 @@ local hl_theme = {
 	{ "@text.strong",             { bold = true } },
 	{ "@text.emphasis",           { italic = true } },
 	-- Treesitter markdown
-	{ "@markup.heading.1.marker", { fg = truec.yellow } },
 	{ "@markup.heading.1",        { link = "Identifier" } },
-	{ "@markup.heading.2.marker", { fg = truec.yellow } },
 	{ "@markup.heading.2",        { link = "Identifier" } },
-	{ "@markup.heading.3.marker", { fg = truec.yellow } },
 	{ "@markup.heading.3",        { link = "Identifier" } },
 	{ "@markup.list",             { fg = truec.yellow } },
 	{ "@markup.link.label",       { fg = truec.orange, bold = true, underline = true } },
@@ -145,12 +142,12 @@ M.lualine = {
 		c = { fg = c.grey },
 	},
 	replace = {
-		a = { fg = c.darkred, bg = c.black, gui = "bold" },
+		a = { fg = c.orange, bg = c.darkred, gui = "bold" },
 		b = { fg = c.black, bg = c.green },
 		c = { fg = c.grey },
 	},
 	command = {
-		a = { fg = c.purple, bg = c.green, gui = "bold" },
+		a = { fg = c.darkred, bg = c.lightred, gui = "bold" },
 		b = { fg = c.black, bg = c.green },
 		c = { fg = c.grey },
 	},

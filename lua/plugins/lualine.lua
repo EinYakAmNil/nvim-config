@@ -12,7 +12,7 @@ return {
 	config = function()
 		require("lualine").setup({
 			options = {
-				theme = package.loaded.yak.lualine,
+				theme = package.loaded.theme.lualine,
 				section_separators = { left = "", right = " " },
 			},
 			sections = {

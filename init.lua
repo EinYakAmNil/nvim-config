@@ -4,7 +4,7 @@
 -- / /|  /  __/ /_/ / |/ / / / / / / /
 --/_/ |_/\___/\____/|___/_/_/ /_/ /_/
 --
-require("yak")
+require("theme")
 require("options")
 require("keymaps")
 
