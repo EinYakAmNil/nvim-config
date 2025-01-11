@@ -1,7 +1,14 @@
 return {
-	{ "onsails/lspkind.nvim" },
 	{
 		"hrsh7th/nvim-cmp",
+		dependencies = {
+			{ "onsails/lspkind.nvim" },
+			{ "hrsh7th/cmp-buffer" },
+			{ "hrsh7th/cmp-nvim-lsp" },
+			{ "hrsh7th/cmp-nvim-lua" },
+			{ "hrsh7th/cmp-path" },
+			{ "saadparwaiz1/cmp_luasnip" },
+		},
 		config = function()
 			local lspkind = require 'lspkind'
 			local cmp = require 'cmp'
@@ -20,10 +27,10 @@ return {
 					},
 				}),
 				sources = cmp.config.sources({
-					{ name = 'nvim_lua', keyword_length = 1, priority = 60, max_item_count = 5 },
-					{ name = 'nvim_lsp', keyword_length = 1, priority = 50, max_item_count = 5 },
-					{ name = 'luasnip', keyword_length = 3 },
-					{ name = 'buffer', keyword_length = 2, max_item_count = 3 },
+					{ name = 'nvim_lua', keyword_length = 1, priority = 60,     max_item_count = 5 },
+					{ name = 'nvim_lsp', keyword_length = 1, priority = 50,     max_item_count = 5 },
+					{ name = 'luasnip',  keyword_length = 3 },
+					{ name = 'buffer',   keyword_length = 2, max_item_count = 3 },
 				}),
 				experimental = {
 					native_menu = false,
@@ -47,9 +54,4 @@ return {
 			vim.lsp.omnifunc = cmp.complete()
 		end
 	},
-	{ "hrsh7th/cmp-buffer" },
-	{ "hrsh7th/cmp-nvim-lsp" },
-	{ "hrsh7th/cmp-nvim-lua" },
-	{ "hrsh7th/cmp-path" },
-	{ "saadparwaiz1/cmp_luasnip" },
 }

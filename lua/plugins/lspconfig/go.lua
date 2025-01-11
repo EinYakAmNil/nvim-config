@@ -1,28 +1,31 @@
 local utils = require("plugins.lspconfig.utils")
 
-function _G.go_foldexpr(lnum)
-	local fold_ranges = {}
-	local node = vim.treesitter.get_node({ pos = { 0, 1 } })
-	local i = 1
-	while node do
-		local start_row, _, end_row = node:range()
-		local node_t = node:type()
+local function get_folds()
+	print("called!")
+	local folds = {}
+	local node = vim.treesitter.get_node({ pos = { 0, 1 } }):parent()
 
-		if node_t == "method_declaration" or node_t == "function_declaration" then
-			start_row, _, end_row = node:range()
-			fold_ranges[i] = { start_row + 1, end_row + 1 }
+	if node then
+		local i = 1
+		for child_node in node:iter_children() do
+			local start_row, _, end_row, _ = child_node:range()
+			folds[i] = { start_row + 1, end_row + 1 }
 			i = i + 1
 		end
-
-		node = node:next_sibling()
 	end
+	return folds
+end
 
-	for _, range in ipairs(fold_ranges) do
+function _G.go_foldexpr(lnum)
+	local folds = vim.b[vim.api.nvim_get_current_buf()].folds
+	if not folds then
+		vim.b[vim.api.nvim_get_current_buf()].folds = get_folds()
+	end
+	for _, range in ipairs(folds) do
 		if lnum > range[1] and lnum < range[2] then
 			return 1
 		end
 	end
-
 	return 0
 end
 

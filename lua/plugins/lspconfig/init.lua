@@ -1,17 +1,20 @@
-local utils = require("plugins.lspconfig.utils")
-local c_settings = require("plugins.lspconfig.c")
-local go_settings = require("plugins.lspconfig.go")
-local javascript_settings = require("plugins.lspconfig.javascript")
-local latex_settings = require("plugins.lspconfig.latex")
-local lua_settings = require("plugins.lspconfig.lua")
-local python_settings = require("plugins.lspconfig.python")
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
 vim.opt.signcolumn = "yes"
 
 return {
 	"neovim/nvim-lspconfig",
+	dependencies = { "nvim-treesitter/nvim-treesitter" },
+	event = "FileType",
 	config = function()
-		local capabilities = require("cmp_nvim_lsp").default_capabilities()
 		local lspconfig = require("lspconfig")
+		local utils = require("plugins.lspconfig.utils")
+		local c_settings = require("plugins.lspconfig.c")
+		local go_settings = require("plugins.lspconfig.go")
+		local javascript_settings = require("plugins.lspconfig.javascript")
+		local latex_settings = require("plugins.lspconfig.latex")
+		local lua_settings = require("plugins.lspconfig.lua")
+		local python_settings = require("plugins.lspconfig.python")
 		lspconfig.ccls.setup({
 			capabilities = capabilities,
 			on_attach = function()
