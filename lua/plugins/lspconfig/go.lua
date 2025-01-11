@@ -1,7 +1,6 @@
 local utils = require("plugins.lspconfig.utils")
 
 local function get_folds()
-	print("called!")
 	local folds = {}
 	local node = vim.treesitter.get_node({ pos = { 0, 1 } }):parent()
 

@@ -38,6 +38,14 @@ return {
 			capabilities = capabilities,
 			on_attach = function()
 				utils.on_attach(go_settings)
+				vim.api.nvim_create_augroup("go autocmds", {})
+				vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+					group = "go autocmds",
+					callback = function()
+						vim.b[vim.api.nvim_get_current_buf()].folds = nil
+						print("clear old fold indices.")
+					end
+				})
 			end
 		})
 		lspconfig.lua_ls.setup({
