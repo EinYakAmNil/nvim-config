@@ -43,7 +43,6 @@ return {
 					group = "go autocmds",
 					callback = function()
 						vim.b[vim.api.nvim_get_current_buf()].folds = nil
-						print("clear old fold indices.")
 					end
 				})
 			end
