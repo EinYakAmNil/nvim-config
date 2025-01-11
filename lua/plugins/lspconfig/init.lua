@@ -15,6 +15,13 @@ return {
 		local latex_settings = require("plugins.lspconfig.latex")
 		local lua_settings = require("plugins.lspconfig.lua")
 		local python_settings = require("plugins.lspconfig.python")
+		local shell_settings = require("plugins.lspconfig.shell")
+		lspconfig.bashls.setup({
+			capabilities = capabilities,
+			on_attach = function()
+				utils.on_attach(shell_settings)
+			end
+		})
 		lspconfig.ccls.setup({
 			capabilities = capabilities,
 			on_attach = function()
