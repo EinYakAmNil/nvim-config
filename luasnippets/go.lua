@@ -34,10 +34,10 @@ end
 ls.add_snippets("go", {
 	s("if err", fmta(
 		[[
-		if <err> != nil {{
+		if <err> != nil {
 			<err_rep1> = fmt.Errorf("<func_name>: %w\n", <err_rep2>)
 			return
-		}}
+		}
 		]], {
 			err = i(1, "err"),
 			err_rep1 = rep(1),
