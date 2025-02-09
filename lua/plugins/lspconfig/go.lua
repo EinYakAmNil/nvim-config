@@ -41,7 +41,7 @@ go_keymaps[#go_keymaps + 1] = { "n", "<leader>t", function()
 	vim.cmd("write")
 	local go_dir = vim.fn.expand("%:h")
 	local obj = vim.system(
-		{ "go", "test" },
+		{ "go", "test", "-short" },
 		{ cwd = go_dir, text = true }
 	):wait()
 	if obj.stderr ~= "" then
