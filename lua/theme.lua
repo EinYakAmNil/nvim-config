@@ -44,6 +44,7 @@ local hl_theme = {
 	{ "Normal",                   { fg = truec.lightblue } },
 	{ "NormalFloat",              { bg = truec.deeperpink } },
 	{ "Conceal",                  { link = "Normal" } },
+	{ "Statusline",                  { link = "Normal" } },
 	{ "Visual",                   { bg = truec.darkred, bold = true } },
 	{ "Search",                   { bg = truec.darkblue, bold = true, reverse = true } },
 	{ "IncSearch",                { link = "Search" } },
