@@ -1,5 +1,15 @@
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "yaml",
+	callback = function(ev)
+		local path = vim.fs.dirname(ev.file)
+		if path and string.find(path, "/ansible/") then
+			vim.bo.filetype = "yaml.ansible"
+		end
+	end,
+})
+
 vim.opt.signcolumn = "yes"
 
 return {
@@ -9,6 +19,7 @@ return {
 	config = function()
 		local lspconfig = require("lspconfig")
 		local utils = require("plugins.lspconfig.utils")
+		local ansible_settings = require("plugins.lspconfig.ansible")
 		local c_settings = require("plugins.lspconfig.c")
 		local go_settings = require("plugins.lspconfig.go")
 		local javascript_settings = require("plugins.lspconfig.javascript")
@@ -70,6 +81,12 @@ return {
 			capabilities = capabilities,
 			on_attach = function()
 				utils.on_attach(javascript_settings)
+			end
+		})
+		lspconfig.ansiblels.setup({
+			capabilities = capabilities,
+			on_attach = function()
+				utils.on_attach(ansible_settings)
 			end
 		})
 	end
