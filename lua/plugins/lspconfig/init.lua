@@ -1,7 +1,7 @@
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 vim.api.nvim_create_augroup("ansiblels", { clear = true })
-vim.api.nvim_create_autocmd("FileType" , {
+vim.api.nvim_create_autocmd("FileType", {
 	group = "ansiblels",
 	pattern = "yaml",
 	callback = function(ev)
