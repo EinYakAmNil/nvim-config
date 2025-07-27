@@ -1,11 +1,19 @@
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-vim.api.nvim_create_autocmd("FileType", {
+vim.api.nvim_create_augroup("ansiblels", { clear = true })
+vim.api.nvim_create_autocmd("FileType" , {
+	group = "ansiblels",
 	pattern = "yaml",
 	callback = function(ev)
 		local path = vim.fs.dirname(ev.file)
-		if path and string.find(path, "/ansible/") then
+		if path and string.find(path, "/ansible") then
 			vim.bo.filetype = "yaml.ansible"
+			return
+		end
+		path = vim.fn.getcwd()
+		if path and string.find(path, "/ansible") then
+			vim.bo.filetype = "yaml.ansible"
+			return
 		end
 	end,
 })
