@@ -49,7 +49,7 @@ ls.add_snippets("go", {
 	s("if err", fmta(
 		[[
 		if <err> != nil {
-			<err_rep1> = fmt.Errorf("<package_name>/<func_name>: %w\n", <err_rep2>)
+			<err_rep1> = errors.Join(<err_rep2>, errors.New("<package_name>/<func_name>"))
 			return
 		}
 		]], {
