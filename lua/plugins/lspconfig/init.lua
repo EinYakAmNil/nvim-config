@@ -30,6 +30,7 @@ return {
 		local ansible_settings = require("plugins.lspconfig.ansible")
 		local c_settings = require("plugins.lspconfig.c")
 		local go_settings = require("plugins.lspconfig.go")
+		local haskell_settings = require("plugins.lspconfig.haskell")
 		local javascript_settings = require("plugins.lspconfig.javascript")
 		local latex_settings = require("plugins.lspconfig.latex")
 		local lua_settings = require("plugins.lspconfig.lua")
@@ -97,5 +98,13 @@ return {
 				utils.on_attach(ansible_settings)
 			end
 		})
+		vim.lsp.config('hls', {
+			filetypes = { 'haskell', 'lhaskell', 'cabal' },
+			capabilities = capabilities,
+			on_attach = function()
+				utils.on_attach(haskell_settings)
+			end
+		})
+		vim.lsp.enable('hls')
 	end
 }

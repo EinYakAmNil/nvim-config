@@ -18,7 +18,7 @@ vim.opt.conceallevel = 0
 vim.opt.concealcursor = "nc"
 vim.opt.wildmode="longest:full"
 
---Better indenting, indentexpr outsourced to lua/utils.lua
+-- Indenting will be handled by LSPs
 vim.cmd([[filetype indent off]])
 vim.o.tabstop = 4
 vim.o.softtabstop = 4
