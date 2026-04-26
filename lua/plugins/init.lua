@@ -19,10 +19,8 @@ return {
 		"nvim-lua/plenary.nvim",
 		lazy = false,
 	},
-
-	--Neovim in the browser
-	{
+	{ --Neovim in the browser
 		"glacambre/firenvim",
 		build = ":call firenvim#install(0)"
-	},
+	}
 }

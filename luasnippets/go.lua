@@ -11,6 +11,10 @@ local i = ls.insert_node
 
 local function go_package_name()
 	local node = vim.treesitter.get_node():tree():root():child(0)
+	if node == nil then
+		error("Can't get root node")
+		return
+	end
 	local query = assert(vim.treesitter.query.get("go", "package-name"), "no query")
 	for _, identifier in query:iter_captures(node, 0) do
 		return vim.treesitter.get_node_text(identifier, 0)

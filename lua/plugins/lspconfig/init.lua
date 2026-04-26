@@ -1,26 +1,48 @@
-local lsp_keymap_opts = { noremap = true, silent = true, buffer = 0 }
+local telescope = require("telescope.builtin")
+local actions = require('telescope.actions')
+local action_state = require('telescope.actions.state')
+
+local function open_in_tab(prompt_bufnr)
+	local selection = action_state.get_selected_entry()
+	actions.close(prompt_bufnr)
+	vim.cmd('tab drop ' .. selection.filename)
+	vim.api.nvim_win_set_cursor(0, { selection.lnum, selection.col })
+end
+
+local lsp_keymap_opts = { noremap = true, silent = true }
+
 local lsp_keymaps = {
-	{ "n", "<leader>=", vim.lsp.buf.format,          lsp_keymap_opts },
+	{ "n", "<leader>=", vim.lsp.buf.format,         lsp_keymap_opts },
 	{ "n", "<leader>e", function()
 		vim.diagnostic.jump({ count = 1, float = true })
 	end, lsp_keymap_opts },
 	{ "n", "<leader>E", function()
 		vim.diagnostic.jump({ count = -1, float = true })
 	end, lsp_keymap_opts },
-	{ "n", "<leader>K", vim.lsp.buf.hover,           lsp_keymap_opts },
-	{ "n", "<leader>r", vim.lsp.buf.rename,          lsp_keymap_opts },
-	{ "n", "gd",        vim.lsp.buf.definition,      lsp_keymap_opts },
-	{ "n", "gi",        vim.lsp.buf.implementation,  lsp_keymap_opts },
-	{ "n", "gr",        vim.lsp.buf.references,      lsp_keymap_opts },
-	{ "n", "gt",        vim.lsp.buf.type_definition, lsp_keymap_opts },
+	{ "n", "<leader>K", vim.lsp.buf.hover,          lsp_keymap_opts },
+	{ "n", "<leader>r", vim.lsp.buf.rename,         lsp_keymap_opts },
+	{ "n", "gd",        vim.lsp.buf.definition,     lsp_keymap_opts },
+	{ "n", "gi",        vim.lsp.buf.implementation, lsp_keymap_opts },
+	{ "n", "gr", function()
+		telescope.lsp_references({
+			attach_mappings = function(_, map)
+				map('i', '<CR>', open_in_tab)
+				map('n', '<CR>', open_in_tab)
+				return true
+			end
+		})
+	end, lsp_keymap_opts },
+	{ "n", "gt", vim.lsp.buf.type_definition, lsp_keymap_opts },
 }
+
 local lsp_configs = {
 	ansiblels = {},
 	bashls = {},
 	ccls = {},
 	gopls = {},
+	html = {},
 	hls = { filetypes = { 'haskell', 'lhaskell', 'cabal' }, },
-	lua_ls = {},
+	lua_ls = require("plugins.lspconfig.lua"),
 	pylsp = {},
 	terraformls = { filetypes = { "terraform", "hcl" } },
 	texlab = {},
@@ -29,7 +51,7 @@ local lsp_configs = {
 }
 
 ---@return string
-function _G.my_foldtext()
+function _G.lsp_foldtext()
 	local first_line = vim.fn.getline(vim.v.foldstart)
 		:gsub("\t", string.rep(" ", vim.o.tabstop))
 	local last_line = vim.fn.getline(vim.v.foldend)
@@ -65,7 +87,7 @@ return {
 		vim.opt.signcolumn = "yes"
 		vim.opt.foldmethod = 'expr'
 		vim.opt.foldexpr = 'v:lua.vim.lsp.foldexpr()'
-		vim.opt.foldtext = "v:lua.my_foldtext()"
+		vim.opt.foldtext = "v:lua.lsp_foldtext()"
 		for _, keymap in ipairs(lsp_keymaps) do
 			---@diagnostic disable-next-line: param-type-mismatch
 			vim.keymap.set(unpack(keymap))
