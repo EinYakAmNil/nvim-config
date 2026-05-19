@@ -43,7 +43,8 @@ local lsp_configs = {
 	html = {},
 	hls = { filetypes = { 'haskell', 'lhaskell', 'cabal' }, },
 	lua_ls = require("plugins.lspconfig.lua"),
-	pylsp = {},
+	pyright = {}, -- for Python
+	ruff = {}, -- for Python
 	terraformls = { filetypes = { "terraform", "hcl" } },
 	texlab = {},
 	ts_ls = {},
