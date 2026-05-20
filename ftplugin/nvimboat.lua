@@ -1,1 +1,1 @@
-vim.treesitter.start()
+require("ftplugin.common")

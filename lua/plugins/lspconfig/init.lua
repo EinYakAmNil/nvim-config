@@ -85,9 +85,6 @@ return {
 	dependencies = { "nvim-treesitter/nvim-treesitter" },
 	event = "FileType",
 	config = function()
-		vim.opt.signcolumn = "yes"
-		vim.opt.foldmethod = 'expr'
-		vim.opt.foldexpr = 'v:lua.vim.lsp.foldexpr()'
 		vim.opt.foldtext = "v:lua.lsp_foldtext()"
 		for _, keymap in ipairs(lsp_keymaps) do
 			---@diagnostic disable-next-line: param-type-mismatch
