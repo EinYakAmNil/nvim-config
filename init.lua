@@ -7,6 +7,7 @@
 require("theme")
 require("options")
 require("keymaps")
+require("treesitter")
 
 -- Bootstrap Lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"

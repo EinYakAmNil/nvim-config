@@ -14,7 +14,7 @@ M.general_keymaps = {
 }
 
 function M.copy_values(array)
-	cpy = {}
+	local cpy = {}
 	for i, val in ipairs(array) do
 		cpy[i] = val
 	end

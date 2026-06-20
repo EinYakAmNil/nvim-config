@@ -1,1 +1,1 @@
-require("ftplugin.common")
+vim.wo.foldlevel = 99

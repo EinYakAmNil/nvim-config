@@ -48,7 +48,8 @@ local lsp_configs = {
 	terraformls = { filetypes = { "terraform", "hcl" } },
 	texlab = {},
 	ts_ls = {},
-	yamlls = {},
+	yamlls = { filetypes = { "yaml.ansible", "yaml", "yaml.docker-compose", "yaml.gitlab", "yaml.helm-values" } },
+	lemminx = {},
 }
 
 ---@return string

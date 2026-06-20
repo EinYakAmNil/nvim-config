@@ -65,7 +65,7 @@ go_keymaps[#go_keymaps + 1] = { "n", "<leader>b", function()
 				print("Build successful.")
 				return
 			end
-			msg = ""
+			local msg = ""
 			for _, line in ipairs(data) do
 				msg = msg .. line
 			end

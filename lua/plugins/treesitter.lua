@@ -4,6 +4,9 @@ return { {
 	branch = "main",
 	lazy = false,
 	build = ":TSUpdate",
+	config = function()
+		vim.keymap.set("n", "<F2>", vim.cmd.Inspect, { noremap = true })
+	end
 }, {
 	"nvim-treesitter/playground",
 	enabled = false,
