@@ -7,13 +7,16 @@ vim.api.nvim_create_autocmd('FileType', {
 		"bash",
 		"c",
 		"go",
+		"json",
 		"lua",
 		"nvimboat",
+		"python",
+		"rasi",
 		"sh",
 		"sql",
+		"toml",
 		"yaml",
 		"zsh",
-		"json",
 	},
 	callback = function()
 		vim.treesitter.start()
